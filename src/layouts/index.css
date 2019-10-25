@@ -1,0 +1,19 @@
+.logos {
+    margin-top      : 10px;
+    width           : 60%;
+    height          : 100px;
+    margin-left     : 20%;
+    margin-bottom   : 10px;
+    background-image: url(../assets/logo.jpg);
+    background-size : 100% 100px
+}
+
+.layoutHeader{
+    font-size: 30px;
+}
+
+.avatar {
+    background-color: #5645f1;
+    /* vertical-align  : middle; */
+    cursor          : pointer;
+}
