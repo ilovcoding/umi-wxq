@@ -13,7 +13,8 @@
     "rc-queue-anim": "^1.8.2",
     "rc-texty": "^0.2.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "socket.io-client": "^2.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",

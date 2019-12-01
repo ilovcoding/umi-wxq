@@ -1,8 +1,8 @@
 
-import { Layout, } from 'antd';
+import { Layout, Divider } from 'antd';
 import Nav from "./components/Nav";
 import LayoutHeader from './components/LayoutHeader';
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 function BasicLayout(props) {
   return (
     <Layout style={{ height: "100%" }} >
@@ -11,6 +11,7 @@ function BasicLayout(props) {
         <Header style={{ backgroundColor: "white" }}>
           <LayoutHeader />
         </Header>
+        <Divider></Divider>
         <Content >{props.children}</Content>
       </Layout>
     </Layout>

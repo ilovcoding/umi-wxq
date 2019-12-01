@@ -1,5 +1,4 @@
 import styles from "./index.css"
-// import PropsTypes from 'prop-types'
 import React from 'react'
 class OnlineTalk extends React.Component {
   render() {
@@ -10,9 +9,9 @@ class OnlineTalk extends React.Component {
           <div style={{ width: "100px", display: "flex", alignItems: "center" }}>
             <img src={props.avatar}></img>
           </div>
-          <div className={styles.context}>
+          <div className={styles.content}>
             <span>{`${props.name}: `}</span>
-            {props.context}
+            {props.content}
           </div >
         </div>
         <div className={styles.msgId}>
@@ -22,10 +21,4 @@ class OnlineTalk extends React.Component {
     )
   }
 }
-// OnlineTalk.prototype = {
-//   name: PropsTypes.string,
-//   avatar: PropsTypes.string,
-//   context: PropsTypes.string,
-//   msgId: PropsTypes.string
-// }
 export default OnlineTalk

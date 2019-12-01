@@ -8,19 +8,21 @@ export default {
   routes: [
     {
       exact: true,
+      path: '/online/wechat',
+      component: '../pages/online/wechat',
+      title: "明理苑网络文化工作室"
+    },
+    {
+      // exact: true,
       path: '/',
       component: '../layouts/index',
       routes: [
         { path: '/', component: '../pages/index' },
         { path: '/wechat', component: '../pages/wechat' },
+        { path: '/setting', component: '../pages/setting/index' },
+        { path: '/online/check', component: '../pages/online/check', title: "用户审核" },
       ]
 
-    },
-    {
-      exact: true,
-      path: '/online/wechat',
-      component: '../pages/online/wechat',
-      title: "明理苑网络文化工作室"
     },
   ],
   plugins: [
