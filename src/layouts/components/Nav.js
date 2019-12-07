@@ -16,12 +16,14 @@ function Nav(props) {
           </span>
         }>
         <MenuItem>
-          微信墙设置
-          </MenuItem>
+          <Link to='/online/setting'>
+            设置
+          </Link>
+        </MenuItem>
         <MenuItem>
           <Link to='/online/check'>
-            审核
-            </Link>
+          消息记录
+          </Link>
         </MenuItem>
         <MenuItem>
           搜索用户

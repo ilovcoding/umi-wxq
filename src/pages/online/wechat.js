@@ -1,42 +1,39 @@
 //  微信墙 投影页面
 import React, { Component } from 'react'
 import { Divider, Row, Icon, Button, Col } from 'antd';
+import { connect } from 'dva'
 import OnlineTalk from '../../components/OnlineWechat/OnlineTalk';
 import Texty from 'rc-texty'
 import QueueAnim from 'rc-queue-anim';
-import socket from '../../utils/socket'
+// import socket from '../../utils/socket'
 import wx_logo from '../../assets/weixin_logo.png'
 import styles from './index.css'
 import 'rc-texty/assets/index.css';
 // 新建socket连接
-// let newWs = new WebSocket("ws://localhost:3000");
+let newWs = new WebSocket("ws://free.qydev.com:4063");
 class Wechat extends Component {
 
   state = {
     // 标题微言合工大 动画控制
     show: true,
-    // 要显示在网页上的消息
-    msgList: [],
     //  从后台获取的消息
     socketMsgList: [],
     // 控制页面滚动到底部
     toEnd: {},
-    msgAnimationTime: 2000
+    msgAnimationTime: 1000
   }
-  createMagContextInterval(numbers){
-    
+  createMagContextInterval(numbers) {
+
   }
   componentDidMount() {
-    let { socketMsgList, msgList } = this.state
-    let [_socketMsgList, _msgList] = [socketMsgList, msgList]
+    let { socketMsgList } = this.state
+    let [_socketMsgList, _msgList] = [socketMsgList, this.props.msgList]
     // 响应 socket
-    socket.open()
-    socket.on('connect', (res) => {
-      socket.send("你好我是 websocket create By 王旻伟")
-    })
-    let taht = this
-    socket.on('message', (msgRes) => {
+    // socket.open()
 
+    let taht = this
+    newWs.onmessage((res) => {
+      let msgRes = res['data']
       if (msgRes['msgType'] === "text") {
         // 后台发送过来的合适的消息 进入socketMsgList 待处理
         _socketMsgList.push(msgRes)
@@ -45,6 +42,7 @@ class Wechat extends Component {
         })
       }
     })
+
     this.showTimer = setInterval(
       () => {
         this.setState({ show: !this.state.show })
@@ -53,30 +51,22 @@ class Wechat extends Component {
     this.contextTimer = setInterval(
       () => {
         taht.toEnd.scrollIntoView({ behavior: "smooth" })
-        // console.log(socketMsgList.length)
+
+        // _msgList  先清空
+        // _msgList 等于之前的数组 如果管理员没执行删除操作那么 没有任何变化；、
+        // 如果有 删除操作 则页面上对应数据被清空
+        _msgList = []
+        _msgList = this.props.msgList
+
         _socketMsgList.length > 0 && _msgList.push(_socketMsgList.shift())
-        // setmsgList(msgList)
-        // setsocketMsgList(socketMsgList)
-        // console.log(_socketMsgList.length)
+        // console.log(msgList)
         this.setState({
           socketMsgList: _socketMsgList,
-          msgList: _msgList
-        }, () => {
-          console.log(socketMsgList.length)
-          if (socketMsgList.length >= 10 && socketMsgList.length < 20) {
-            clearInterval(this.contextTimer)
-            this.setState({
-              msgAnimationTime: 1000
-            })
-          }
-           if (socketMsgList.length >= 20 && socketMsgList.length < 30) {
-            this.setState({
-              msgAnimationTime: 500
-            })
-          } 
-          if(socketMsgList.length>=30){
-            console.log("待会儿再发")
-          }
+        })
+        // console.log(this.props)
+        taht.props.dispatch({
+          type: 'online/setMsgData',
+          payload: _msgList
         })
         // this.state.toEnd.scrollIntoView({ behavior: "smooth" })
       }, this.state.msgAnimationTime
@@ -122,7 +112,7 @@ class Wechat extends Component {
           style={{ height: "100%", overflow: "hidden", paddingTop: "120px" }}
         >
           {
-            this.state.msgList.length > 0 && this.state.msgList.map((value, index) => {
+            this.props.msgList.length > 0 && this.props.msgList.map((value, index) => {
               // console.log(msgIndex, currentId)
               return (
                 <OnlineTalk
@@ -142,4 +132,6 @@ class Wechat extends Component {
     )
   }
 }
-export default Wechat
+export default connect(({ online }) => ({
+  msgList: online.msgList
+}))(Wechat)

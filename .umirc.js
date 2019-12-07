@@ -20,7 +20,8 @@ export default {
         { path: '/', component: '../pages/index' },
         { path: '/wechat', component: '../pages/wechat' },
         { path: '/setting', component: '../pages/setting/index' },
-        { path: '/online/check', component: '../pages/online/check', title: "用户审核" },
+        { path: '/online/setting', component: '../pages/online/setting', title: "微信墙设置" },
+        { path: '/online/check', component: '../pages/online/check/index', title: "消息记录" },
       ]
 
     },
@@ -45,4 +46,11 @@ export default {
       },
     }],
   ],
+  proxy: {
+    "/api/*": {
+      "target": "http://dx.hfutonline.cn",
+      "secure": false,
+      "changeOrigin": true
+    }
+  },
 }
