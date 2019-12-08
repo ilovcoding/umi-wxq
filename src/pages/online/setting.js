@@ -1,34 +1,8 @@
 import { Component } from 'react'
-import { Switch, Input,Upload,message,Icon } from 'antd'
+import { Switch, Input, Upload, message, Icon, Button } from 'antd'
 import { Form } from 'antd'
 const FormItem = Form.Item
 const TextArea = Input.TextArea
-// class OnlineSetting extends Component {
-//   render() {
-// return (
-//   <div style={{ marginLeft: '20px' }}>
-//     <div>
-//       <b>微信墙开关：</b>
-//       <Switch checkedChildren="开" unCheckedChildren="关" defaultChecked />
-//     </div>
-//     {
-//       Form
-//     }
-//     <Divider>明理苑大学生网络文化工作室</Divider>
-//   </div>
-// )
-//     return Form.create(class extends Component {
-//       render(){
-//         return (
-//           <FormItem>
-//           </FormItem>
-//         )
-//       }
-//     })
-//   }
-
-// }
-// export default OnlineSetting
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
@@ -56,9 +30,9 @@ function beforeUpload(file) {
   }
   return isJpgOrPng && isLt2M;
 }
-export default Form.create({ name: '' })(
+export default Form.create({ name: 'setting' })(
   class extends Component {
-    state ={
+    state = {
       loading: false
     }
     handleSubmit = () => {
@@ -79,7 +53,7 @@ export default Form.create({ name: '' })(
         );
       }
     };
-    
+
     render() {
       const uploadButton = (
         <div>
@@ -88,25 +62,41 @@ export default Form.create({ name: '' })(
         </div>
       );
       return (
-        <Form  {...formItemLayout} onSubmit={this.handleSubmit} >
+        <Form  {...formItemLayout} onSubmit={this.handleSubmit} style={{ float: 'left' }}>
           <FormItem label="微信墙开关">
             <Switch checkedChildren="开" unCheckedChildren="关" defaultChecked />
           </FormItem>
           <FormItem label="微信墙序言">
-            <TextArea value="关注微言合工大，发送&nbsp;微信墙&nbsp;至公众号，即可参与互动" style={{height:'100px',width:'400px'}}></TextArea>
+            <TextArea value="关注微言合工大，发送&nbsp;微信墙&nbsp;至公众号，即可参与互动" style={{ height: '100px', width: '400px' }}></TextArea>
           </FormItem>
           <FormItem label="微信墙图标">
-          <Upload
-          name="avatar"
-          listType="picture-card"
-          className="avatar-uploader"
-          showUploadList={false}
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-          beforeUpload={beforeUpload}
-          onChange={this.handleChange}
-        >
-          {this.state.imageUrl ? <img src={this.state.imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-        </Upload>
+            <Upload
+              name="avatar"
+              listType="picture-card"
+              className="avatar-uploader"
+              showUploadList={false}
+              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              beforeUpload={beforeUpload}
+              onChange={this.handleChange}
+            >
+              {this.state.imageUrl ? <img src={this.state.imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+            </Upload>
+          </FormItem>
+          <FormItem label="微信墙二维码">
+            <Upload
+              name="avatar"
+              listType="picture-card"
+              className="avatar-uploader"
+              showUploadList={false}
+              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              beforeUpload={beforeUpload}
+              onChange={this.handleChange}
+            >
+              {this.state.imageUrl ? <img src={this.state.imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+            </Upload>
+          </FormItem>
+          <FormItem label="提交更改">
+            <Button type="primary" htmlType="submit">提交</Button>
           </FormItem>
         </Form>
       )

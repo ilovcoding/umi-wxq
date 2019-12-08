@@ -22,18 +22,24 @@ function Nav(props) {
         </MenuItem>
         <MenuItem>
           <Link to='/online/check'>
-          消息记录
+            消息记录
           </Link>
         </MenuItem>
         <MenuItem>
-          搜索用户
-          </MenuItem>
+          <Link to='/online/search'>
+            搜索用户
+          </Link>
+        </MenuItem>
       </SubMenu>
       <MenuItem >
-        <Icon style={{ fontSize: "18px" }} type="gift" /> 微抽奖
+        <Link to='/online/gift'>
+          <Icon style={{ fontSize: "18px" }} type="gift" /> 微抽奖
+        </Link>
       </MenuItem>
       <MenuItem >
-        <Icon style={{ fontSize: "18px" }} type="pie-chart" /> 微投票
+        <Link to='/online/vote'>
+          <Icon style={{ fontSize: "18px" }} type="pie-chart" /> 微投票
+        </Link>
       </MenuItem>
       <MenuItem  >
         <Link to='/setting'>

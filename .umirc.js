@@ -22,6 +22,9 @@ export default {
         { path: '/setting', component: '../pages/setting/index' },
         { path: '/online/setting', component: '../pages/online/setting', title: "微信墙设置" },
         { path: '/online/check', component: '../pages/online/check/index', title: "消息记录" },
+        { path: '/online/search', component: '../pages/online/search', title: "搜索用户" },
+        { path: '/online/gift', component: '../pages/online/gift', title: "设置抽奖" },
+        { path: '/online/vote', component: '../pages/online/vote', title: "微投票" },
       ]
 
     },

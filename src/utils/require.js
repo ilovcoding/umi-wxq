@@ -1,4 +1,4 @@
-import fetch from 'dva/fetch';
+import {fetch} from 'dva';
 import queryString from 'query-string';
 import { message } from "antd";
 
