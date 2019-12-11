@@ -42,7 +42,7 @@ function Nav(props) {
         </Link>
       </MenuItem>
       <MenuItem  >
-        <Link to='/setting'>
+        <Link to='/wechat'>
           <Icon style={{ fontSize: "18px" }} type="wechat" /> 微信设置
         </Link>
       </MenuItem>
